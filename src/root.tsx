@@ -6,7 +6,9 @@ import {
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
 
+import "tailwindcss-preflight/preflight.css";
 import "./global.css";
+import "virtual:uno.css";
 
 export default component$(() => {
   /**
