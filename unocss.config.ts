@@ -4,6 +4,7 @@ import { defineConfig } from "unocss";
 import transformerVariantGroup from "@unocss/transformer-variant-group";
 import presetMini from "@unocss/preset-mini";
 import { variantParentMatcher } from "@unocss/preset-mini/utils";
+import transformerCompileClass from "@unocss/transformer-compile-class";
 // import { animatedUno } from "animated-unocss";
 
 export default defineConfig({
@@ -12,6 +13,14 @@ export default defineConfig({
   },
   shortcuts: {},
   rules: [
+    [
+      "truncate",
+      {
+        "white-space": "nowrap",
+        overflow: "hidden",
+        "text-overflow": "ellipsis",
+      },
+    ],
     ["w-fit", { width: "fit-content" }],
     ["h-fit", { height: "fit-content" }],
     ["w-min", { width: "min-content" }],
@@ -33,7 +42,7 @@ export default defineConfig({
     variantParentMatcher("height", "@media (max-height: 500px)"),
     variantParentMatcher("lt-height", "@media (min-height: 500px)"),
   ],
-  transformers: [transformerVariantGroup()],
+  transformers: [transformerVariantGroup(), transformerCompileClass()],
   presets: [
     presetMini({
       dark: "media",
