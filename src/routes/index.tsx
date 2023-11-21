@@ -4,36 +4,31 @@ import { $, component$, useStore } from "@builder.io/qwik";
 import Container from "~/components/Container";
 import Input from "~/components/Input";
 import Todo from "~/components/Todo";
-import type { TodoType } from "~/components/Todo";
-import { v4 } from "uuid";
+import { createTodo, getAllTodos } from "~/api/db";
+import Sql from "~/components/Sql";
 
 export default component$(() => {
-  const vals = useStore<{ list: TodoType[] }>({
-    list: [
-      {
-        id: "1",
-        name: "hello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello worldhello world",
-        completed: true,
-      },
-      { id: "2", name: "hello world", completed: true },
-      { id: "3", name: "hello world", completed: false },
-      { id: "4", name: "hello world", completed: true },
-    ],
-  });
+  const vals = useStore({ list: getAllTodos() });
+
   return (
     <div>
       <Container>
+        <Sql />
         <div q:slot="paper">
           <div>
             <form
               onSubmit$={(e, target) => {
-                const data = Object.fromEntries(new FormData(target).entries());
-                vals.list.unshift({
-                  id: v4(),
-                  completed: false,
+                const data = Object.fromEntries(
+                  new FormData(target).entries()
+                ) as { name: string };
+
+                createTodo({
                   ...data,
-                } as any);
+                  completed: false,
+                });
+
                 target.reset();
+
                 const elem = target.querySelector(
                   '[name="name"]'
                 ) as HTMLInputElement;
@@ -50,6 +45,11 @@ export default component$(() => {
             </form>
           </div>
           <div class="flex flex-col gap-3 my-3">
+            {vals.list.length === 0 && (
+              <div class="text-center select-none text-gray-400 min-h-150px grid place-content-center">
+                No Todos, Add Some
+              </div>
+            )}
             {vals.list.map((e) => {
               return (
                 <Todo

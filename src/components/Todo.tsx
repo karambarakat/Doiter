@@ -1,18 +1,16 @@
 import type { QRL } from "@builder.io/qwik";
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { BsTrash, BsPencil } from "@qwikest/icons/bootstrap";
-
-export type TodoType = { name: string; completed: boolean; id: string };
+import type { ITodo } from "~/api/db";
 
 const Todo = component$(
-  ({ data, del }: { data: TodoType; del: QRL<(id: string) => void> }) => {
+  ({ data, del }: { data: ITodo; del: QRL<(id: string) => void> }) => {
     const hover = useSignal(false);
     const isEditing = useSignal(false);
 
     const ref = useSignal<HTMLInputElement>();
     useVisibleTask$(({ track }) => {
       track(() => isEditing.value);
-      console.log({ ref });
 
       if (isEditing.value === true) {
         ref.value?.setSelectionRange(data.name.length, data.name.length);

@@ -14,6 +14,12 @@ export default defineConfig({
   shortcuts: {},
   rules: [
     [
+      "isolate",
+      {
+        isolation: "isolate",
+      },
+    ],
+    [
       "truncate",
       {
         "white-space": "nowrap",

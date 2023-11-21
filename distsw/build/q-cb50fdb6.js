@@ -1,0 +1,1 @@
+import{n as e,h as t,_ as o}from"./q-5f8bffcd.js";const a=e(t(()=>o(()=>import("./q-80423cf3.js"),["build/q-80423cf3.js","build/q-3c058a99.js","build/q-5f8bffcd.js","build/q-bd6e5996.js"]),"s_xYL1qOwPyDI")),r={title:"Welcome to Doiter",meta:[{name:"description",content:"Doiter Simple Todo App"}]};export{a as default,r as head};
