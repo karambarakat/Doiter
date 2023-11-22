@@ -8,7 +8,15 @@ import { VitePWA } from  'vite-plugin-pwa'
 export default defineConfig(() => {
   return {
     plugins: [qwikCity(), qwikVite(), tsconfigPaths(), UnoCSS()],
-
+    server: {
+      headers: {
+        'Cross-Origin-Opener-Policy': 'same-origin',
+        'Cross-Origin-Embedder-Policy': 'require-corp',  
+      }
+    },
+    optimizeDeps: {
+      exclude: ['@sqlite.org/sqlite-wasm']
+    },
     preview: {
       headers: {
         "Cache-Control": "public, max-age=600",

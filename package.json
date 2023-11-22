@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@qwikest/icons": "^0.0.13",
+    "@sqlite.org/sqlite-wasm": "^3.44.0-build2",
     "@tauri-apps/api": "^1.5.1",
     "sql.js": "^1.8.0",
     "tailwindcss-preflight": "^1.0.1",
