@@ -1,1 +1,0 @@
-import{c as t}from"./q-3c058a99.js";import"./q-5f8bffcd.js";import"./q-bd6e5996.js";const a=(m,e)=>{const o=Object.fromEntries(new FormData(e).entries());t({...o,completed:!1}),e.reset(),e.querySelector('[name="name"]').focus()};export{a as s_P5OGZfiJwsQ};

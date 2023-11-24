@@ -30,8 +30,12 @@ const Todo = component$(({ data }: { data: ITodo }) => {
   return (
     <div
       class="hover:bg-slate-50 p-3"
-      onFocus$={() => {
+      onFocusin$={() => {
         hover.value = true;
+      }}
+      onFocusout$={(event, target) => {
+        if (target.contains(event.relatedTarget as Node)) return;
+        hover.value = false;
       }}
       role="button"
       aria-labelledby={id + "name"}

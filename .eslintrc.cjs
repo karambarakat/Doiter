@@ -4,7 +4,9 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    worker: true,
   },
+  execlude: ["public/worker.js"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",

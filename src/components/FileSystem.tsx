@@ -1,7 +1,6 @@
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
 export default component$(() => {
-  const val = useSignal<any>();
   useVisibleTask$(async () => {
     // console.log("FileSystem", debug);
     // val.value = debug;

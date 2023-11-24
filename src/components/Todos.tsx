@@ -1,4 +1,4 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import Todo from "./Todo";
 import { useGetAllTodos } from "~/api/db";
 
@@ -7,9 +7,9 @@ const info = `:uno:
   text-center grid place-content-center`;
 
 const Todos = component$(() => {
-  const vals = useGetAllTodos();
+  const todos = useGetAllTodos();
 
-  if (vals.status.value === "pending") {
+  if (todos.status.value === "pending") {
     return (
       <div aria-role="presentation" class={info}>
         Loading ...
@@ -17,18 +17,14 @@ const Todos = component$(() => {
     );
   }
 
-  useVisibleTask$(() => {
-    console.log("todos", vals.data.value);
-  });
-
   return (
     <div class="flex flex-col gap-3 my-3">
-      {vals.data.value.length === 0 && (
+      {todos.data.value.length === 0 && (
         <div aria-role="presentation" class={info}>
           No Todos, Add Some
         </div>
       )}
-      {vals.data.value.map((e) => {
+      {todos.data.value.map((e) => {
         return <Todo key={e.id} data={e} />;
       })}
     </div>
