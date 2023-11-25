@@ -5,23 +5,22 @@ import Container from "~/components/Container";
 import { useQueryClient } from "~/api/db";
 import Todos from "~/components/Todos";
 import AddTodo from "~/components/AddTodo";
-import { useWorker } from "~/api/initWorker";
-import { useMakeDb, useWorkerDB } from "~/api/initDB";
+import { DBProvider } from "~/components/AppLoading";
+// import { DBProvider } from "~/api/initDB";
 
 export default component$(() => {
-  useMakeDb();
   useQueryClient();
-  useWorker();
-  useWorkerDB();
-  // const output = useWorker();
+  // useInitDB();
 
   return (
     <div>
       <Container>
-        <div q:slot="paper">
+        {/* <div q:slot="paper"> */}
+        <DBProvider q:slot="paper">
           <AddTodo />
           <Todos />
-        </div>
+        </DBProvider>
+        {/* </div> */}
       </Container>
     </div>
   );

@@ -10,9 +10,11 @@ export default extendConfig(baseConfig, () => {
         input: ["@qwik-city-plan"],
       },
     },
+    
     plugins: [
       staticAdapter({
         origin: "https://doiter.vercel.app",
+        
       }),
     ],
   };

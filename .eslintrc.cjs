@@ -6,7 +6,6 @@ module.exports = {
     node: true,
     worker: true,
   },
-  execlude: ["public/worker.js"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
