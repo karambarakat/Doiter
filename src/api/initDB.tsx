@@ -10,9 +10,13 @@ import {
   // useSignal,
   useVisibleTask$,
 } from "@builder.io/qwik";
-import workerDb from "./workerDb?worker";
+import workerDb from "./db.worker?worker";
 import sql from "@sqlite.org/sqlite-wasm";
-import type { BidirectionalFunction, ExecArgument, Messages } from "./workerDb";
+import type {
+  BidirectionalFunction,
+  ExecArgument,
+  Messages,
+} from "./db.worker";
 
 function setUpWorker() {
   return new Promise<Worker | undefined>((res) => {
@@ -40,14 +44,12 @@ function setUpBidirectional(worker: Worker) {
   );
 
   async function bidirectional(exec: ExecArgument) {
+    // some how this has to be locked in case it is called twice
     channel.port1.postMessage({ type: "EXEC", exec } as Messages);
 
     const event = await new Promise<MessageEvent>((res) => {
       channel.port1.onmessage = (event: MessageEvent) => {
         res(event);
-
-        // clean up
-        // channel.port1.onmessage = null;
       };
     });
 

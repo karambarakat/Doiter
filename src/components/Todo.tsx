@@ -27,6 +27,13 @@ const Todo = component$(({ data }: { data: ITodo }) => {
     }
   });
 
+  if (!del || !update) {
+    console.warn(
+      "this component have to be called with mutation functions ready"
+    );
+    return <div></div>;
+  }
+
   return (
     <div
       class="hover:bg-slate-50 p-3"
@@ -41,7 +48,7 @@ const Todo = component$(({ data }: { data: ITodo }) => {
       aria-labelledby={id + "name"}
       onKeyDown$={(e) => {
         if (e.key === "Enter") {
-          update({ ...data, completed: !data.completed });
+          // update({ ...data, completed: !data.completed });
         }
       }}
       tabIndex={0}

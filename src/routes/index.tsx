@@ -5,22 +5,26 @@ import Container from "~/components/Container";
 import { useQueryClient } from "~/api/db";
 import Todos from "~/components/Todos";
 import AddTodo from "~/components/AddTodo";
-import { DBProvider } from "~/components/AppLoading";
-// import { DBProvider } from "~/api/initDB";
+import { useInitDB } from "~/api/initDB";
+import { DbIsNotReady } from "~/components/AppLoading";
+import ManageWorkspace from "~/components/ManageWorkspace";
 
 export default component$(() => {
   useQueryClient();
-  // useInitDB();
+  useInitDB();
 
   return (
     <div>
       <Container>
-        {/* <div q:slot="paper"> */}
-        <DBProvider q:slot="paper">
+        <div class="flex" q:slot="before">
+          <ManageWorkspace />
+        </div>
+        <div q:slot="paper">
           <AddTodo />
-          <Todos />
-        </DBProvider>
-        {/* </div> */}
+          <DbIsNotReady>
+            <Todos />
+          </DbIsNotReady>
+        </div>
       </Container>
     </div>
   );

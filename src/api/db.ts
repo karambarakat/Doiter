@@ -6,7 +6,6 @@ import {
   useSignal,
   useStore,
   useTask$,
-  useVisibleTask$,
 } from "@builder.io/qwik";
 // import { useDB } from "./initDB";
 import { useDB } from "./initDB";
@@ -22,6 +21,9 @@ export const useQueryClient = () => {
 
 export const useCreateTodo = () => {
   const db = useDB();
+
+  if (!db.value.exec) return;
+
   const client = useContext(clientX);
 
   return $(async (data: { name: string; completed: boolean }) => {
@@ -41,6 +43,7 @@ export const useCreateTodo = () => {
 
 export const useUpdateTodo = () => {
   const db = useDB();
+  if (!db.value.exec) return;
   const client = useContext(clientX);
 
   return $(async (data: ITodo) => {
@@ -57,6 +60,8 @@ export const useUpdateTodo = () => {
 
 export const useDeleteTodo = () => {
   const db = useDB();
+  if (!db.value.exec) return;
+
   const client = useContext(clientX);
 
   return $(async (id: number) => {
@@ -76,6 +81,7 @@ export const useDeleteTodo = () => {
 
 export const useGetAllTodos = () => {
   const db = useDB();
+  if (!db.value.exec) return;
 
   const client = useContext(clientX);
 
@@ -86,13 +92,6 @@ export const useGetAllTodos = () => {
   const status = useSignal<"pending" | "success" | "error">("pending");
 
   const data = useSignal<ITodo[]>([]);
-
-  useTask$(({ track }) => {
-    track(() => db.value);
-    track(() => client.getAllTodos);
-
-    console.log("first");
-  });
 
   useTask$(async ({ track }) => {
     track(() => db.value);

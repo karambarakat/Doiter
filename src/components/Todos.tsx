@@ -9,7 +9,7 @@ const info = `:uno:
 const Todos = component$(() => {
   const todos = useGetAllTodos();
 
-  if (todos.status.value === "pending") {
+  if (!todos || todos.status.value === "pending") {
     return (
       <div aria-role="presentation" class={info}>
         Loading ...

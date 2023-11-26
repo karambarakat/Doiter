@@ -6,14 +6,17 @@ const AddTodo = component$(() => {
   const createTodo = useCreateTodo();
 
   return (
-    <div>
+    <div class="relative">
+      {!createTodo && (
+        <div class="absolute cursor-progress inset-0 bg-white/50"></div>
+      )}
       <form
         onSubmit$={(e, target) => {
           const data = Object.fromEntries(new FormData(target).entries()) as {
             name: string;
           };
 
-          createTodo({ ...data, completed: false });
+          createTodo?.({ ...data, completed: false });
 
           target.reset();
           const elem = target.querySelector(

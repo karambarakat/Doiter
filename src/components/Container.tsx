@@ -1,5 +1,7 @@
 import { Slot, component$ } from "@builder.io/qwik";
 
+export const paper = ":uno: bg-white p-3 shadow-xl rounded-lg";
+
 const Container = component$(() => {
   return (
     <div class=":uno: relative isolate">
@@ -11,7 +13,11 @@ const Container = component$(() => {
           <div>
             <Slot name="before" />
           </div>
-          <div class=":uno: bg-white isolate p-3 sm:(shadow-xl rounded-lg) min-h-300px h-full flex-1">
+          <div
+            class={[
+              ":uno: bg-white isolate p-3 sm:(shadow-xl rounded-lg) min-h-300px h-full flex-1",
+            ]}
+          >
             <Slot name="paper" />
           </div>
           <div>

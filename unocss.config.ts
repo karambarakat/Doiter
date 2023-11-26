@@ -5,13 +5,27 @@ import transformerVariantGroup from "@unocss/transformer-variant-group";
 import presetMini from "@unocss/preset-mini";
 import { variantParentMatcher } from "@unocss/preset-mini/utils";
 import transformerCompileClass from "@unocss/transformer-compile-class";
-// import { animatedUno } from "animated-unocss";
+import { animatedUno } from "animated-unocss";
 
 export default defineConfig({
   content: {
     filesystem: ["src/**/*.{ts,tsx}"],
   },
-  shortcuts: {},
+  shortcuts: [
+    // ['button', `:uno:
+    // rounded px-3 py-2 cursor-pointer select-none
+    // bg-white hover:bg-gray-100 active:bg-gray-200
+    // shadow-sm active:shadow-none`
+
+    // ]},
+    [
+      "button",
+      `
+        px-3 py-2 cursor-pointer select-none 
+        rounded bg-white hover:bg-gray-100 active:bg-gray-200 
+        shadow-sm active:shadow-none`,
+    ],
+  ],
   rules: [
     [
       "isolate",
@@ -67,6 +81,6 @@ export default defineConfig({
     presetMini({
       dark: "media",
     }),
-    // animatedUno(),
+    animatedUno(),
   ],
 });
