@@ -9,6 +9,7 @@
     "sharp"
   ],
   "scripts": {
+    "postinstall": "patch-package",
     "tauri": "cargo tauri dev",
     "build": "qwik build",
     "build.client": "vite build",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@builder.io/qwik": "^1.2.17",
     "@builder.io/qwik-city": "^1.2.17",
+    "@playwright/test": "^1.40.0",
     "@types/eslint": "^8.44.4",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^20.8.4",
@@ -40,6 +42,7 @@
     "animated-unocss": "^0.0.6",
     "eslint": "^8.51.0",
     "eslint-plugin-qwik": "^1.2.17",
+    "patch-package": "^8.0.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
     "undici": "^5.26.0",

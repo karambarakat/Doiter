@@ -22,8 +22,6 @@ export const useQueryClient = () => {
 export const useCreateTodo = () => {
   const db = useDB();
 
-  if (!db.value.exec) return;
-
   const client = useContext(clientX);
 
   return $(async (data: { name: string; completed: boolean }) => {
@@ -43,7 +41,6 @@ export const useCreateTodo = () => {
 
 export const useUpdateTodo = () => {
   const db = useDB();
-  if (!db.value.exec) return;
   const client = useContext(clientX);
 
   return $(async (data: ITodo) => {

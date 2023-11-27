@@ -10,12 +10,12 @@ const Container = component$(() => {
       </div>
       <div class=":uno: w-full absolute z-2">
         <div class=":uno: sm:mx-5 children:(w-full mx-auto max-w-640px mt-3) lt-height:(pt-20) height:(flex flex-col items-stretch) min-h-screen">
-          <div>
+          <div class="sm:px-initial px-3">
             <Slot name="before" />
           </div>
           <div
             class={[
-              ":uno: bg-white isolate p-3 sm:(shadow-xl rounded-lg) min-h-300px h-full flex-1",
+              ":uno: bg-white isolate p-3 mb-18 sm:(shadow-xl rounded-lg) min-h-300px h-full flex-1",
             ]}
           >
             <Slot name="paper" />

@@ -41,6 +41,7 @@ async function main() {
 
     e.ports[0].onmessage = function (event: MessageEvent) {
       const data = event.data as Messages;
+
       if (data.type === "EXEC") {
         const response = fn(data.exec);
         e.ports[0].postMessage(response);

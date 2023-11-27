@@ -1,0 +1,30 @@
+diff --git a/node_modules/@builder.io/qwik/optimizer.cjs b/node_modules/@builder.io/qwik/optimizer.cjs
+index add5bb6..e79e746 100644
+--- a/node_modules/@builder.io/qwik/optimizer.cjs
++++ b/node_modules/@builder.io/qwik/optimizer.cjs
+@@ -2899,6 +2899,10 @@ globalThis.qwikOptimizer = function(module) {
+             res.setHeader("Cache-Control", "no-cache, no-store, max-age=0");
+             res.setHeader("Access-Control-Allow-Origin", "*");
+             res.setHeader("X-Powered-By", "Qwik Vite Dev Server");
++    
++            res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
++            res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
++
+             res.writeHead(status);
+             const result = await render(renderOpts);
+             Array.from(server.moduleGraph.fileToModulesMap.entries()).forEach((entry => {
+diff --git a/node_modules/@builder.io/qwik/optimizer.mjs b/node_modules/@builder.io/qwik/optimizer.mjs
+index 49de5cc..5a200a8 100644
+--- a/node_modules/@builder.io/qwik/optimizer.mjs
++++ b/node_modules/@builder.io/qwik/optimizer.mjs
+@@ -3000,6 +3000,10 @@ async function configureDevServer(server, opts, sys, path, isClientDevOnly, clie
+           res.setHeader("Cache-Control", "no-cache, no-store, max-age=0");
+           res.setHeader("Access-Control-Allow-Origin", "*");
+           res.setHeader("X-Powered-By", "Qwik Vite Dev Server");
++
++          res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
++          res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
++
+           res.writeHead(status);
+           const result = await render(renderOpts);
+           Array.from(server.moduleGraph.fileToModulesMap.entries()).forEach((entry => {

@@ -23,6 +23,12 @@ export default component$(() => {
       <head>
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#fde68a" />
+        <meta
+          name="description"
+          content="Doiter is a simple and private todo app"
+        />
+
         <RouterHead />
         <ServiceWorkerRegister />
       </head>

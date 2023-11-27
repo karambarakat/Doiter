@@ -84,31 +84,24 @@ export const useDB = () => useContext(dbContext);
 
 export function useInitDB() {
   const shared = useSignal<CC>({ conn: "loading", exec: undefined });
-  // | { conn: "loading" }
 
   useVisibleTask$(
     async () => {
       const worker = await setUpWorker();
 
+      let exec;
+
       if (worker) {
-        shared.value = {
-          conn: "opfs",
-          exec: noSerialize(setUpBidirectional(worker)),
-        };
+        exec = setUpBidirectional(worker);
       } else {
-        shared.value = {
-          conn: "local",
-          exec: noSerialize(await setUpLocal()),
-        };
+        exec = await setUpLocal();
       }
-    },
-    { strategy: "document-ready" }
-  );
 
-  useVisibleTask$((ctx) => {
-    ctx.track(() => shared.value);
+      shared.value = {
+        conn: worker ? "opfs" : "local",
+        exec: noSerialize(exec),
+      };
 
-    if ("exec" in shared.value) {
       shared.value.exec?.({
         sql: `
       CREATE TABLE IF NOT EXISTS todos (
@@ -119,8 +112,9 @@ export function useInitDB() {
       );
       `,
       });
-    }
-  });
+    },
+    { strategy: "document-ready" }
+  );
 
   useContextProvider(dbContext, shared);
 }
