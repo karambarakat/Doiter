@@ -12,7 +12,7 @@ import { FaSpinnerSolid, FaXSolid } from "@qwikest/icons/font-awesome";
 // import {} from "@qwikest/icons/";
 import Modal from "./Modal";
 import { useDB } from "~/api/initDB";
-import { saveAs } from "file-saver";
+import saveAs from "file-saver";
 
 const ManageWorkspace = component$(() => {
   const open = useSignal(false);
@@ -184,13 +184,6 @@ const ManageWorkspace = component$(() => {
     </div>
   );
 });
-
-// const FileUpload = component$(() => {
-//     return <label>
-//         <input class type="file" />
-
-//     </label>
-// })
 
 const divider = `:uno: min-h-1px bg-black`;
 const sec = ":uno: hover:bg-slate-200 cursor-pointer select-none p-4";

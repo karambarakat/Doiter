@@ -20,6 +20,8 @@ export const useQueryClient = () => {
 };
 
 export const useCreateTodo = () => {
+  //  const id = localStorage.getItem("id")
+
   const db = useDB();
 
   const client = useContext(clientX);

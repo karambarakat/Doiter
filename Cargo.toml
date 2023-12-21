@@ -1,0 +1,9 @@
+[workspace]
+
+default-members = [
+    "rust",
+]
+
+members = [
+    "rust",
+]

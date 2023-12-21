@@ -11,6 +11,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:qwik/recommended",
   ],
+  ignorePatterns: ["**/*.md", "**/vendor/*.js"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     tsconfigRootDir: __dirname,
@@ -21,6 +22,7 @@ module.exports = {
       jsx: true,
     },
   },
+
   plugins: ["@typescript-eslint"],
   rules: {
     "@typescript-eslint/no-explicit-any": "off",

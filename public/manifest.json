@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
-  "name": "doiter Todo App",
+  "name": "Doiter Todo App",
   "short_name": "Doiter",
   "icons": [
     {
